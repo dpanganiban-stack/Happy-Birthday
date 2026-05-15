@@ -102,28 +102,56 @@ button:hover {
     50% { transform: translateY(-25px); }
 }
 
+/* Container needs to be relative so cards stay inside it */
 .gallery {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
+    position: relative;
+    width: 100%;
+    height: 80vh; /* Gives space for the cards to spread out */
+    margin-top: 50px;
 }
 
 .card {
-    background: #50C878;
-    width: 240px;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    transition: 0.3s;
+    position: absolute; /* Allows manual placement */
+    background: white;
+    padding: 10px 10px 30px 10px; /* Thick bottom for that Polaroid look */
+    border: 5px solid white; /* The white border from your reference image */
+    border-radius: 5px; /* Subtle bend on the edges */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    width: 220px;
+    transition: transform 0.3s ease, z-index 0s;
+    cursor: pointer;
 }
 
-/* Update your existing .photo img to include a transition */
+/* Individual Positions and Rotations */
+.pos1 {
+    top: 10%;
+    left: 5%;
+    transform: rotate(-15deg);
+}
+
+.pos2 {
+    top: 50%;
+    left: 40%;
+    transform: rotate(5deg);
+}
+
+.pos3 {
+    top: 15%;
+    right: 10%;
+    transform: rotate(12deg);
+}
+
+/* Zoom effect on hover while keeping the card on top */
+.card:hover {
+    transform: scale(1.1) rotate(0deg);
+    z-index: 100; /* Makes sure the hovered card is always on top */
+}
+
 .photo img {
     width: 100%;
-    height: 90%;
-    object-fit: cover;
-    transition: transform 0.4s ease; /* This makes the zoom smooth */
+    height: auto;
+    display: block;
+    border-radius: 2px; /* Slight roundness on the actual photo */
 }
 
 /* This triggers the zoom when the cursor aims at the card */
